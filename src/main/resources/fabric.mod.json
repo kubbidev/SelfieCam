@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "selfiecam",
+  "version": "${version}",
+  "name": "SelfieCam",
+  "icon": "assets/selfiecam/icon.png",
+  "description": "A Minecraft mod which adds 2 new third person camera modes into!",
+  "authors": [
+    "kubbidev"
+  ],
+  "license": "CC BY-NC-SA 4.0",
+  "contact": {
+    "issues": "https://github.com/kubbidev/SelfieCam/issues"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.kubbidev.selfiecam.SelfieCamMod"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "selfiecam.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "minecraft": "~1.20.1"
+  }
+}
