@@ -1,6 +1,6 @@
 package me.kubbidev.selfiecam.mixin;
 
-import me.kubbidev.selfiecam.camera.CameraView;
+import me.kubbidev.selfiecam.CameraView;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
@@ -31,7 +31,7 @@ public class HeldItemRendererMixin {
             int light,
             CallbackInfo ci
     ) {
-        if (CameraView.INSTANCE == null || entity != MinecraftClient.getInstance().player) {
+        if (CameraView.isDisabled() || entity != MinecraftClient.getInstance().player) {
             return;
         }
 

@@ -5,11 +5,11 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class StickModel extends Model {
+public class SelfieStickModel extends Model {
     protected final ModelPart rightStick;
     protected final ModelPart leftStick;
 
-    public StickModel() {
+    public SelfieStickModel() {
         super(RenderLayer::getEntityCutout);
         TexturedModelData texturedModelData = createTexturedModelData();
         ModelPart model = texturedModelData.createModel();
@@ -24,6 +24,7 @@ public class StickModel extends Model {
                         .uv(4, 0).cuboid(-2.0F, 10.0F, -1.0F, 2.0F, 5.0F, 2.0F, new Dilation(0.0F))
                         .uv(0, 0).cuboid(-1.5F, 15.0F, -0.5F, 1.0F, 13.0F, 1.0F, new Dilation(0.0F)),
                 ModelTransform.pivot(-5.0F, 2.0F, 0.0F));
+
         root.addChild("left_stick", ModelPartBuilder.create()
                         .uv(4, 0).cuboid(0.0F, 10.0F, -1.0F, 2.0F, 5.0F, 2.0F, new Dilation(0.0F))
                         .uv(0, 0).cuboid(0.5F, 15.0F, -0.5F, 1.0F, 13.0F, 1.0F, new Dilation(0.0F)),
