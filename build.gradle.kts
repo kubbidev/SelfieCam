@@ -78,7 +78,7 @@ publishing {
             from(components["java"])
             pom {
                 name = "SelfieCam"
-                description = "A Minecraft mod which adds 2 new third person camera modes into!"
+                description = "A Minecraft mod that adds 2 new third-person camera modes for taking selfies!"
                 url = "https://github.com/kubbidev/SelfieCam"
 
                 licenses {
