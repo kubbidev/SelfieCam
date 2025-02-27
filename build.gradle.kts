@@ -28,8 +28,8 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.20.1")
-    mappings("net.fabricmc:yarn:1.20.1+build.10:v2")
+    minecraft("com.mojang:minecraft:1.21.4")
+    mappings("net.fabricmc:yarn:1.21.4+build.8:v2")
     modImplementation("net.fabricmc:fabric-loader:0.16.10")
 
     val apiModules = listOf(
@@ -37,7 +37,7 @@ dependencies {
     )
 
     apiModules.forEach {
-        modImplementation(fabricApi.module(it, "0.92.3+1.20.1"))
+        modImplementation(fabricApi.module(it, "0.118.0+1.21.4"))
     }
 
     // test
