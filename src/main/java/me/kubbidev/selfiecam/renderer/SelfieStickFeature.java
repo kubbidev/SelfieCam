@@ -1,6 +1,7 @@
 package me.kubbidev.selfiecam.renderer;
 
 import me.kubbidev.selfiecam.CameraView;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
@@ -26,6 +27,8 @@ public class SelfieStickFeature<T extends AbstractClientPlayerEntity, M extends 
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        if (MinecraftClient.getInstance().player != entity) return;
+
         if (CameraView.instance == CameraView.RIGHT_SELFIE_STICK) {
             MODEL.rightStick.visible = true;
             MODEL.leftStick.visible = false;
