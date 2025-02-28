@@ -42,6 +42,10 @@ public enum CameraView {
         return instance == LEFT_SELFIE || instance == LEFT_SELFIE_STICK;
     }
 
+    public static boolean isSelfieStick() {
+        return instance == RIGHT_SELFIE_STICK || instance == LEFT_SELFIE_STICK;
+    }
+
     @FunctionalInterface
     public interface CameraViewAction {
         void accept(BipedEntityModel<?> bipedEntityModel, float cameraAngle);

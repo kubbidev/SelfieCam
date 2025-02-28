@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class GameRenderMixin {
 
     @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
-    private void getFov(Camera camera, float tickDelta, boolean changingFov, CallbackInfoReturnable<Double> ci) {
+    private void getFov(Camera camera, float tickDelta, boolean changingFov, CallbackInfoReturnable<Float> ci) {
         if (CameraView.isDisabled() || camera.getFocusedEntity() == null) {
             return;
         }
@@ -26,14 +26,14 @@ public class GameRenderMixin {
         applyCameraFov(window.getWidth() >= window.getHeight(), pitch, cameraAngle, ci);
     }
 
-    private void applyCameraFov(boolean landscape, float pitch, float cameraAngle, CallbackInfoReturnable<Double> ci) {
+    private void applyCameraFov(boolean landscape, float pitch, float cameraAngle, CallbackInfoReturnable<Float> ci) {
         if (pitch < -40.0F) {
-            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle / 1.5);
+            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle / 1.5F);
         } else if (pitch > 40.0F) {
             cameraAngle = (90.0F + pitch) / 10.0F - 14.0F;
-            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle * 2.5);
+            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle * 2.5F);
         } else {
-            ci.setReturnValue((double) CameraView.instance.getFov(landscape));
+            ci.setReturnValue(CameraView.instance.getFov(landscape));
         }
     }
 }

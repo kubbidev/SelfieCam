@@ -6,8 +6,8 @@
     "BipedEntityModelMixin",
     "CameraMixin",
     "GameRenderMixin",
-    "HeldItemRendererMixin",
-    "LivingEntityRendererMixin"
+    "LivingEntityRendererMixin",
+    "PlayerHeldItemFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

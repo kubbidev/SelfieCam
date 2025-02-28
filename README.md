@@ -1,9 +1,9 @@
-# SelfieCam (1.20.1)
+# SelfieCam (1.21.4)
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=for-the-badge)](https://github.com/RichardLitt/standard-readme)
 [![discord-banner](https://img.shields.io/discord/1258062506270654515?label=discord&style=for-the-badge&color=7289da)](https://discord.kubbidev.me)
 
-SelfieCam is a **Minecraft 1.20.1 mod** that adds 2 new third-person camera modes for taking selfies!
+SelfieCam is a **Minecraft 1.21.4 mod** that adds 2 new third-person camera modes for taking selfies!
 
 It is:
 
