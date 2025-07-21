@@ -16,14 +16,18 @@ public class BipedEntityModelMixin<T extends BipedEntityRenderState> {
 
     @Inject(method = "setAngles", at = @At("TAIL"))
     public void setAngles(T bipedEntityRenderState, CallbackInfo ci) {
-        if (CameraView.isDisabled()) return;
+        if (CameraView.isDisabled()) {
+            return;
+        }
 
         if (!(bipedEntityRenderState instanceof PlayerEntityRenderState playerRenderState)) {
             return;
         }
 
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player == null || playerRenderState.id != player.getId()) return;
+        if (player == null || playerRenderState.id != player.getId()) {
+            return;
+        }
 
         //noinspection DataFlowIssue
         BipedEntityModel<?> model = (BipedEntityModel<?>) (Object) this;

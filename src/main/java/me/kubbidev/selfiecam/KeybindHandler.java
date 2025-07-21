@@ -8,12 +8,12 @@ import net.minecraft.client.option.Perspective;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindHandler {
+
     /**
-     * A key binding for taking a screenshot.
-     * Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F6 the F6 key} by default.
+     * A key binding for taking a screenshot. Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F6 the F6 key} by default.
      */
     public static final KeyBinding SCREENSHOT_KEY = KeyBindingHelper.registerKeyBinding(
-            new KeyBinding("selfiecam.key.screenshot", GLFW.GLFW_KEY_F6, "Selfie Cam"));
+        new KeyBinding("selfiecam.key.screenshot", GLFW.GLFW_KEY_F6, "Selfie Cam"));
 
     public static Perspective defaultPerspective;
 
@@ -22,7 +22,9 @@ public class KeybindHandler {
     }
 
     private static void clientTick(MinecraftClient client) {
-        if (client.player == null) return;
+        if (client.player == null) {
+            return;
+        }
 
         if (SCREENSHOT_KEY.wasPressed()) {
             whenKeyPressed(client);

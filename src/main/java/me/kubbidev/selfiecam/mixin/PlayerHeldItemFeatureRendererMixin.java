@@ -19,9 +19,12 @@ public class PlayerHeldItemFeatureRendererMixin<S extends PlayerEntityRenderStat
 
     @Inject(method = "renderItem", at = @At("HEAD"), cancellable = true)
     private void renderItem(
-            S playerEntityRenderState, ItemRenderState itemRenderState, Arm arm, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci
+        S playerEntityRenderState, ItemRenderState itemRenderState, Arm arm, MatrixStack matrixStack,
+        VertexConsumerProvider vertexConsumerProvider, int i, CallbackInfo ci
     ) {
-        if (CameraView.isDisabled()) return;
+        if (CameraView.isDisabled()) {
+            return;
+        }
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null || playerEntityRenderState.id != player.getId()) {
             return;

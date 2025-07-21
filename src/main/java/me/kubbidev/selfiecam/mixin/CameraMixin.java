@@ -17,7 +17,9 @@ public abstract class CameraMixin {
 
     @Inject(method = "update", at = @At("RETURN"))
     private void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
-        if (CameraView.isDisabled()) return;
+        if (CameraView.isDisabled()) {
+            return;
+        }
 
         Window window = MinecraftClient.getInstance().getWindow();
         if (window.getWidth() >= window.getHeight()) {

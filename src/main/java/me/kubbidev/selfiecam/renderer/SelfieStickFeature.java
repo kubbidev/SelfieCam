@@ -14,6 +14,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 public class SelfieStickFeature<S extends PlayerEntityRenderState, M extends PlayerEntityModel> extends FeatureRenderer<S, M> {
+
     public static final Identifier TEXTURE = Identifier.of("selfiecam", "textures/stick.png");
 
     private final SelfieStickModel model;
@@ -24,8 +25,11 @@ public class SelfieStickFeature<S extends PlayerEntityRenderState, M extends Pla
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, S state, float limbAngle, float limbDistance) {
-        if (!CameraView.isSelfieStick()) return;
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, S state, float limbAngle,
+                       float limbDistance) {
+        if (!CameraView.isSelfieStick()) {
+            return;
+        }
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if (player == null || state.id != player.getId()) {
             return;
