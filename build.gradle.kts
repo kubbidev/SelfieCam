@@ -32,8 +32,7 @@ dependencies {
     val apiModules = listOf(
         "fabric-api-base",
         "fabric-key-binding-api-v1",
-        "fabric-lifecycle-events-v1",
-        "fabric-networking-api-v1"
+        "fabric-lifecycle-events-v1"
     )
 
     apiModules.forEach {
