@@ -1,6 +1,8 @@
-package me.kubbidev.selfiecam.mixin;
+package me.kubbidev.selfiecam.mixins;
 
-import me.kubbidev.selfiecam.CameraView;
+import me.kubbidev.selfiecam.SelfieState;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
@@ -10,12 +12,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+@Environment(EnvType.CLIENT)
 @Mixin(GameRenderer.class)
 public class GameRenderMixin {
 
     @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
-    private void getFov(Camera camera, float tickDelta, boolean changingFov, CallbackInfoReturnable<Float> ci) {
-        if (CameraView.isDisabled() || camera.getFocusedEntity() == null) {
+    private void getFov(Camera camera, float tickProgress, boolean changingFov, CallbackInfoReturnable<Float> ci) {
+        if (SelfieState.isDisabled() || camera.getFocusedEntity() == null) {
             return;
         }
 
@@ -28,12 +31,12 @@ public class GameRenderMixin {
 
     private void applyCameraFov(boolean landscape, float pitch, float cameraAngle, CallbackInfoReturnable<Float> ci) {
         if (pitch < -40.0F) {
-            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle / 1.5F);
+            ci.setReturnValue(SelfieState.selfieState.getFov(landscape) - cameraAngle / 1.5F);
         } else if (pitch > 40.0F) {
             cameraAngle = (90.0F + pitch) / 10.0F - 14.0F;
-            ci.setReturnValue(CameraView.instance.getFov(landscape) - cameraAngle * 2.5F);
+            ci.setReturnValue(SelfieState.selfieState.getFov(landscape) - cameraAngle * 2.5F);
         } else {
-            ci.setReturnValue(CameraView.instance.getFov(landscape));
+            ci.setReturnValue(SelfieState.selfieState.getFov(landscape));
         }
     }
 }

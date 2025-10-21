@@ -1,19 +1,24 @@
 package me.kubbidev.selfiecam;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.option.KeyBinding.Category;
 import net.minecraft.client.option.Perspective;
 import org.lwjgl.glfw.GLFW;
 
+@Environment(EnvType.CLIENT)
 public class KeybindHandler {
 
     /**
-     * A key binding for taking a screenshot. Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F6 the F6 key} by default.
+     * A key binding for toggling selfie perspective. Bound to {@linkplain org.lwjgl.glfw.GLFW#GLFW_KEY_F6 the F6 key} by default.
      */
-    public static final KeyBinding SCREENSHOT_KEY = KeyBindingHelper.registerKeyBinding(
-        new KeyBinding("selfiecam.key.screenshot", GLFW.GLFW_KEY_F6, "Selfie Cam"));
+    public static final KeyBinding TOGGLE_PERSPECTIVE_KEY = KeyBindingHelper.registerKeyBinding(
+        new KeyBinding("selfiecam.key.toggle_perspective", GLFW.GLFW_KEY_F6, Category.MISC)
+    );
 
     public static Perspective defaultPerspective;
 
@@ -26,11 +31,11 @@ public class KeybindHandler {
             return;
         }
 
-        if (SCREENSHOT_KEY.wasPressed()) {
+        if (TOGGLE_PERSPECTIVE_KEY.wasPressed()) {
             whenKeyPressed(client);
         }
 
-        if (CameraView.isEnabled()) {
+        if (SelfieState.isEnabled()) {
             client.options.setPerspective(Perspective.THIRD_PERSON_FRONT);
         } else if (defaultPerspective != null) {
             client.options.setPerspective(defaultPerspective);
@@ -39,16 +44,16 @@ public class KeybindHandler {
     }
 
     private static void whenKeyPressed(MinecraftClient client) {
-        if (CameraView.isDisabled()) {
-            CameraView.instance = CameraView.RIGHT_SELFIE;
-        } else if (CameraView.instance == CameraView.RIGHT_SELFIE) {
-            CameraView.instance = CameraView.LEFT_SELFIE;
-        } else if (CameraView.instance == CameraView.LEFT_SELFIE) {
-            CameraView.instance = CameraView.RIGHT_SELFIE_STICK;
-        } else if (CameraView.instance == CameraView.RIGHT_SELFIE_STICK) {
-            CameraView.instance = CameraView.LEFT_SELFIE_STICK;
+        if (SelfieState.isDisabled()) {
+            SelfieState.selfieState = SelfieState.RIGHT;
+        } else if (SelfieState.selfieState == SelfieState.RIGHT) {
+            SelfieState.selfieState = SelfieState.LEFT;
+        } else if (SelfieState.selfieState == SelfieState.LEFT) {
+            SelfieState.selfieState = SelfieState.RIGHT_STICK;
+        } else if (SelfieState.selfieState == SelfieState.RIGHT_STICK) {
+            SelfieState.selfieState = SelfieState.LEFT_STICK;
         } else {
-            CameraView.instance = null;
+            SelfieState.selfieState = null;
         }
 
         if (defaultPerspective == null) {

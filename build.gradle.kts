@@ -25,9 +25,9 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.21.8")
-    mappings("net.fabricmc:yarn:1.21.8+build.1:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.16.14")
+    minecraft("com.mojang:minecraft:1.21.10")
+    mappings("net.fabricmc:yarn:1.21.10+build.2:v2")
+    modImplementation("net.fabricmc:fabric-loader:0.17.3")
 
     val apiModules = listOf(
         "fabric-api-base",
@@ -36,17 +36,18 @@ dependencies {
     )
 
     apiModules.forEach {
-        modImplementation(fabricApi.module(it, "0.129.0+1.21.8"))
+        modImplementation(fabricApi.module(it, "0.136.0+1.21.10"))
     }
 
     // Unit tests
-    testImplementation("org.testcontainers:junit-jupiter:1.20.4")
-    testImplementation("org.mockito:mockito-core:5.14.2")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
+    testImplementation("org.testcontainers:junit-jupiter:1.21.3")
+    testImplementation("org.mockito:mockito-core:5.20.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.20.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:6.0.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:6.0.0")
 }
 
 tasks.withType<JavaCompile> {
@@ -134,7 +135,7 @@ publishing {
                 developers {
                     developer {
                         id = "kubbidev"
-                        name = "kubbi"
+                        name = "Kubbi"
                         url = "https://kubbidev.me"
                     }
                 }

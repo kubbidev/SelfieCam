@@ -1,6 +1,8 @@
-package me.kubbidev.selfiecam.mixin;
+package me.kubbidev.selfiecam.mixins;
 
-import me.kubbidev.selfiecam.CameraView;
+import me.kubbidev.selfiecam.SelfieState;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.util.Window;
@@ -12,12 +14,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Environment(EnvType.CLIENT)
 @Mixin(Camera.class)
 public abstract class CameraMixin {
 
     @Inject(method = "update", at = @At("RETURN"))
-    private void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
-        if (CameraView.isDisabled()) {
+    private void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickProgress,
+                        CallbackInfo ci
+    ) {
+        if (SelfieState.isDisabled()) {
             return;
         }
 
@@ -33,7 +38,7 @@ public abstract class CameraMixin {
     private void applyCameraRotation(boolean landscape, float cameraAngle) {
         //noinspection DataFlowIssue
         Camera camera = (Camera) (Object) this;
-        setRotation(camera.getYaw() + CameraView.instance.getYaw(landscape) - cameraAngle, camera.getPitch() - cameraAngle);
+        setRotation(camera.getYaw() + SelfieState.selfieState.getYaw(landscape) - cameraAngle, camera.getPitch() - cameraAngle);
     }
 
     @Shadow

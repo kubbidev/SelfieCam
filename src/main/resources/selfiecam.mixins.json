@@ -1,13 +1,17 @@
 {
   "required": true,
-  "package": "me.kubbidev.selfiecam.mixin",
+  "package": "me.kubbidev.selfiecam.mixins",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "BipedEntityModelMixin",
+    "render.model.EntityModelLayersInvoker",
+    "render.model.EntityModelsMixin",
+    "render.model.PlayerEntityModelMixin",
+    "render.state.PlayerEntityRenderStateMixin",
+    "render.LivingEntityRendererMixin",
+    "render.PlayerEntityRendererMixin",
+    "render.PlayerHeldItemFeatureRendererMixin",
     "CameraMixin",
-    "GameRenderMixin",
-    "LivingEntityRendererMixin",
-    "PlayerHeldItemFeatureRendererMixin"
+    "GameRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
