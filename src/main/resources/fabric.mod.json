@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "selfiecam",
-  "version": "${version}",
+  "version": "${modVersion}",
   "name": "SelfieCam",
   "icon": "assets/selfiecam/icon.png",
   "description": "A Minecraft mod that adds 2 new third-person camera modes for taking selfies!",

@@ -52,9 +52,8 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.processResources {
-    inputs.property("version", "$version")
-    filesMatching("**/fabric.mod.json") {
-        expand("version" to "$version")
+    filesMatching("fabric.mod.json") {
+        expand("modVersion" to "$version")
     }
 }
 
@@ -81,10 +80,6 @@ val remappedShadowJar by tasks.registering(RemapJarTask::class) {
     archiveFileName = "SelfieCam-Fabric-$version.jar"
 }
 
-tasks.assemble {
-    dependsOn(remappedShadowJar)
-}
-
 tasks.publish {
     dependsOn(tasks.shadowJar)
 }
@@ -107,9 +102,8 @@ tasks.withType<Test>().configureEach {
     }
 }
 
-artifacts {
-    archives(tasks.shadowJar)
-    archives(remappedShadowJar)
+tasks.assemble {
+    dependsOn(remappedShadowJar)
 }
 
 publishing {
