@@ -3,8 +3,6 @@
   "package": "me.kubbidev.selfiecam.mixins",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "render.model.EntityModelLayersInvoker",
-    "render.model.EntityModelsMixin",
     "render.model.PlayerEntityModelMixin",
     "render.state.PlayerEntityRenderStateMixin",
     "render.LivingEntityRendererMixin",

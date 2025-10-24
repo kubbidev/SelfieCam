@@ -59,6 +59,7 @@ public class SelfieStickModel extends Model<PlayerEntityRenderState> {
     @Override
     public void setAngles(PlayerEntityRenderState playerEntityRenderState) {
         super.setAngles(playerEntityRenderState);
+
         if (SelfieState.selfieState == SelfieState.LEFT_STICK) {
             this.leftStick.visible = true;
             this.rightStick.visible = false;

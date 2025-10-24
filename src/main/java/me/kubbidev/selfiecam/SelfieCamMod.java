@@ -29,6 +29,7 @@ public class SelfieCamMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        SelfieCamModelLayers.register();
         KeybindHandler.registerListener();
     }
 }
