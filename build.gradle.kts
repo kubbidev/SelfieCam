@@ -63,6 +63,7 @@ tasks.processResources {
 }
 
 tasks.shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.FAIL
     archiveFileName = "selfiecam-$version-dev.jar"
     mergeServiceFiles()
     dependencies {
