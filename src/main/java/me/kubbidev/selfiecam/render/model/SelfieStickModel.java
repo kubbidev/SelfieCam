@@ -4,7 +4,7 @@ import me.kubbidev.selfiecam.SelfieState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 
 @Environment(EnvType.CLIENT)
@@ -23,7 +23,7 @@ public class SelfieStickModel extends Model<PlayerEntityRenderState> {
     protected final ModelPart rightStick;
 
     public SelfieStickModel(ModelPart root) {
-        super(root, RenderLayer::getEntityCutout);
+        super(root, RenderLayers::entityCutout);
         this.leftStick = root.getChild(LEFT_STICK);
         this.rightStick = root.getChild(RIGHT_STICK);
     }
